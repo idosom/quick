@@ -3,7 +3,8 @@ backend:
   name: github
   repo: idosom/quick
   branch: main
-  auth_type: pkce
+  base_url: https://github.com 
+  auth_scope: repo
   client_id: Ov23li7CouZziaW3n7qR
 
 # This tells the CMS where to store images, if you add them.
