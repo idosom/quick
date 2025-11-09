@@ -1,13 +1,9 @@
 # The backend tells Decap CMS where your code is stored.
 backend:
   name: github
-  # Your specific repository
   repo: idosom/quick
-  # Your specific branch
   branch: main
-  # This auth type is secure and works perfectly with GitHub Pages
   auth_type: pkce
-  # Your Client ID is correctly formatted here
   client_id: Ov23li7CouZziaW3n7qR
 
 # This tells the CMS where to store images, if you add them.
@@ -23,9 +19,9 @@ collections:
     file: "bookmarks.json"
     format: "json"
     fields:
+      # 1. Title is essential
       - { label: "Title", name: "title", widget: "string" }
+      # 2. URL/Link is essential
       - { label: "URL", name: "url", widget: "string" }
-      - { label: "Description", name: "description", widget: "string", required: false }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      # CRITICAL CHANGE: Quoting the default value
-      - { label: "Pinned", name: "pinned", widget: "boolean", default: 'false', required: false }
+      # 3. Description is now a required field
+      - { label: "Description", name: "description", widget: "string" }

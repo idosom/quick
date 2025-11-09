@@ -2,8 +2,6 @@
   {
     "title": "Google",
     "url": "https://google.com",
-    "description": "The world's most popular search engine.",
-    "tags": ["search", "tools", "web"],
-    "pinned": false
+    "description": "The world's most popular search engine."
   }
 ]
