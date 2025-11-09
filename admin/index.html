@@ -7,22 +7,26 @@
   
   <meta name="cms-config-path" content="/quick/admin/config.yml" /> 
   
-    <script>
-      // This script runs right away but waits for the main CMS library
-      window.onload = function() {
-        // Check if the CMS object exists and manually initialize it
-        if (window.CMS) {
-          window.CMS.init();
-        } else {
-          // This is a safety check; with the script moved, it should not fire.
-          console.error("Decap CMS library not found.");
-        }
-      };
-    </script>
+  <script>
+    window.CMS_MANUAL_INIT = true;
+  </script>
 </head>
 <body>
+  
   <div id="nc-root"></div>
   
-  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js" async></script>
+  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    // Use an onload listener just to be absolutely sure the DOM is ready
+    window.onload = function() {
+        if (window.CMS) {
+            // This is the call that finally starts the application
+            window.CMS.init();
+        } else {
+            console.error("Decap CMS library not found.");
+        }
+    };
+  </script>
 </body>
 </html>
