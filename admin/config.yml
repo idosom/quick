@@ -5,7 +5,7 @@ backend:
   name: github
   # CRITICAL: Use the main GitHub URL for OAuth authorization
   base_url: https://github.com 
-  # Set the authentication type to implicit (required for static hosts)
+  # Set the authentication type to implicit
   auth_type: implicit
   # Your specific repository
   repo: idosom/quick
@@ -15,6 +15,8 @@ backend:
   auth_scope: repo
   # Your Client ID is essential
   client_id: Ov23li7CouZziaW3n7qR
+
+# ... (rest of the file remains the same)
 
 # This tells the CMS where to store images, if you add them.
 media_folder: "assets/uploads"

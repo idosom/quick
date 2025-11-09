@@ -15,13 +15,11 @@
   
   <div id="nc-root"></div>
   
-  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/decap-cms@2.10.19/dist/decap-cms.js"></script>
 
   <script>
-    // Use an onload listener just to be absolutely sure the DOM is ready
     window.onload = function() {
         if (window.CMS) {
-            // This is the call that finally starts the application
             window.CMS.init();
         } else {
             console.error("Decap CMS library not found.");
