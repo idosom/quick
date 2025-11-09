@@ -7,7 +7,7 @@ backend:
   branch: main
   # This auth type is secure and works perfectly with GitHub Pages
   auth_type: pkce
-  # !! PASTE YOUR CLIENT ID FROM GITHUB OAUTH HERE
+  # Your Client ID is correctly formatted here
   client_id: Ov23li7CouZziaW3n7qR
 
 # This tells the CMS where to store images, if you add them.
@@ -27,4 +27,5 @@ collections:
       - { label: "URL", name: "url", widget: "string" }
       - { label: "Description", name: "description", widget: "string", required: false }
       - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Pinned", name: "pinned", widget: "boolean", default: false, required: false }
+      # CRITICAL CHANGE: Quoting the default value
+      - { label: "Pinned", name: "pinned", widget: "boolean", default: 'false', required: false }
