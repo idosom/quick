@@ -1,17 +1,16 @@
 # The backend tells Decap CMS where your code is stored.
 backend:
   name: github
-  # !! MUST CHANGE: Replace with "your-username/your-repo-name"
+  # Your specific repository
   repo: idosom/quick
-  # !! MUST CHANGE: Set to your default branch (main, master, etc.)
+  # Your specific branch
   branch: main
   # This auth type is secure and works perfectly with GitHub Pages
   auth_type: pkce
-  # !! MUST CHANGE: You will get this in Step 2
+  # !! PASTE YOUR CLIENT ID FROM GITHUB OAUTH HERE
   client_id: Ov23li7CouZziaW3n7qR
 
 # This tells the CMS where to store images, if you add them.
-# We aren't, but it's good practice to have.
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
@@ -20,9 +19,8 @@ collections:
   - name: "bookmarks" # The name for the collection in the UI
     label: "Bookmarks" # The label for the collection in the UI
     label_singular: "Bookmark" # The label for a single item
-    folder: "/" # This is tricky: says "look in the root folder"
+    folder: "/" # This tells Decap to look in the root folder
     # This setting tells Decap that all bookmarks live in ONE file
-    # instead of one file per bookmark.
     file: "bookmarks.json"
     # This is how the file is structured
     format: "json"

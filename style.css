@@ -236,3 +236,48 @@ header h1 {
     gap: 0.5rem;
     margin-top: 1.5rem;
 }
+
+/* Remove styles for old header buttons */
+.header-actions {
+    display: none;
+}
+
+/* Remove styles for the modal (we deleted it) */
+.hidden,
+#modal-overlay,
+#add-modal {
+    display: none;
+}
+
+/* Remove user-added border */
+.bookmark-card.user-added {
+    border-left: none;
+}
+
+/* --- NEW STYLES for Floating Admin Button --- */
+.admin-fab {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.admin-fab:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.admin-fab svg {
+    width: 28px;
+    height: 28px;
+}

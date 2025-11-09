@@ -3,20 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const bookmarksContainer = document.getElementById("bookmarks-container");
     const searchBar = document.getElementById("search-bar");
     
-    // Modal Elements
-    const modalOverlay = document.getElementById("modal-overlay");
-    const addBtn = document.getElementById("add-bookmark-btn");
-    const cancelBtn = document.getElementById("cancel-btn");
-    const addForm = document.getElementById("add-form");
-
-    // Action Buttons
-    const exportBtn = document.getElementById("export-btn");
-    const clearLocalBtn = document.getElementById("clear-local-btn");
-    
     // App State
     let allBookmarks = [];
-    let userAddedBookmarks = [];
-    let pinnedUrls = [];
+    let pinnedUrls = []; // We still keep this for user preference
     let currentQuery = "";
 
     // --- LocalStorage Helper Functions ---
@@ -44,23 +33,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Initialize the app
     function initializeApp() {
         // Load state from localStorage
-        userAddedBookmarks = getFromStorage("userBookmarks", []);
         pinnedUrls = getFromStorage("pinnedUrls", []);
 
-        // Fetch master list
+        // Fetch master list from our JSON file
         fetch("bookmarks.json")
             .then(response => response.json())
             .then(masterBookmarks => {
-                // Combine master list with user's local list
-                allBookmarks = [...masterBookmarks, ...userAddedBookmarks];
+                allBookmarks = masterBookmarks;
                 renderApp();
             })
             .catch(error => {
                 console.error("Error fetching bookmarks:", error);
-                bookmarksContainer.innerHTML = "<p>Failed to load bookmarks. Using local-only.</p>";
-                // Even if fetch fails, still load user's bookmarks
-                allBookmarks = [...userAddedBookmarks];
-                renderApp();
+                bookmarksContainer.innerHTML = "<p>Failed to load bookmarks.</p>";
             });
 
         // Setup Event Listeners
@@ -77,27 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Pinning (uses event delegation)
         bookmarksContainer.addEventListener("click", (e) => {
-            if (e.target.classList.contains("pin-btn")) {
-                const url = e.target.dataset.url;
+            // Check if the click is on the button or its path
+            const pinButton = e.target.closest('.pin-btn');
+            if (pinButton) {
+                const url = pinButton.dataset.url;
                 togglePin(url);
             }
         });
-
-        // Modal Open/Close
-        addBtn.addEventListener("click", () => modalOverlay.classList.remove("hidden"));
-        cancelBtn.addEventListener("click", () => modalOverlay.classList.add("hidden"));
-        modalOverlay.addEventListener("click", (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.add("hidden");
-            }
-        });
-
-        // Add Bookmark Form
-        addForm.addEventListener("submit", handleAddBookmark);
-
-        // Action Buttons
-        exportBtn.addEventListener("click", exportLocalBookmarks);
-        clearLocalBtn.addEventListener("click", clearLocalData);
     }
 
     // 3. Render the entire application (filter, sort, and display)
@@ -107,7 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const query = currentQuery;
             const titleMatch = bookmark.title.toLowerCase().includes(query);
             const descriptionMatch = (bookmark.description || "").toLowerCase().includes(query);
-            const tagMatch = bookmark.tags.some(tag => tag.toLowerCase().includes(query));
+            // Ensure bookmark.tags exists before calling .some
+            const tagMatch = Array.isArray(bookmark.tags) && bookmark.tags.some(tag => tag.toLowerCase().includes(query));
             return titleMatch || descriptionMatch || tagMatch;
         });
 
@@ -171,9 +142,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         card.className = "bookmark-card";
         if (isCurrentlyPinned) card.classList.add("pinned");
-        if (bookmark.isUserAdded) card.classList.add("user-added");
 
-        const tagsHTML = bookmark.tags
+        // Handle tags, ensuring it's an array
+        const tags = Array.isArray(bookmark.tags) ? bookmark.tags : [];
+        const tagsHTML = tags
             .map(tag => `<span class="tag">${tag}</span>`)
             .join("");
         
@@ -210,70 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
         saveToStorage("pinnedUrls", pinnedUrls); // Save changes
         renderApp(); // Re-render
     }
-
-    // 8. Handle New Bookmark Submission
-    function handleAddBookmark(e) {
-        e.preventDefault();
-        
-        const title = document.getElementById("title").value;
-        const url = document.getElementById("url").value;
-        const description = document.getElementById("description").value;
-        const tags = document.getElementById("tags").value.split(",").map(t => t.trim()).filter(t => t);
-
-        const newBookmark = {
-            title,
-            url,
-            description,
-            tags,
-            pinned: false,
-            isUserAdded: true // Flag to identify local-only items
-        };
-
-        // Add to our state
-        userAddedBookmarks.push(newBookmark);
-        allBookmarks.push(newBookmark);
-        
-        // Save to localStorage
-        saveToStorage("userBookmarks", userAddedBookmarks);
-
-        // Reset form and close modal
-        addForm.reset();
-        modalOverlay.classList.add("hidden");
-
-        // Re-render
-        renderApp();
-    }
-
-    // 9. Export only user-added bookmarks
-    function exportLocalBookmarks() {
-        if (userAddedBookmarks.length === 0) {
-            alert("No locally-added bookmarks to export.");
-            return;
-        }
-
-        const dataStr = JSON.stringify(userAddedBookmarks, null, 2);
-        const dataBlob = new Blob([dataStr], { type: "application/json" });
-        const url = URL.createObjectURL(dataBlob);
-        
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "user_bookmarks.json";
-        a.click();
-        URL.revokeObjectURL(url);
-        
-        alert("Your locally-added bookmarks have been downloaded. You can now copy the contents of 'user_bookmarks.json' into your main 'bookmarks.json' file.");
-    }
-
-    // 10. Clear all local data
-    function clearLocalData() {
-        if (confirm("Are you sure? This will delete all locally-added bookmarks and reset your pins. This cannot be undone.")) {
-            localStorage.removeItem("userBookmarks");
-            localStorage.removeItem("pinnedUrls");
-            
-            // Reload the app to its original state
-            location.reload();
-        }
-    }
+    
+    // --- All 'add', 'export', and 'clear' functions have been removed ---
 
     // --- Start the App ---
     initializeApp();
