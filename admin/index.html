@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookmark Library - Content Manager</title>
+  
+  <meta name="cms-config-path" content="/quick/admin/config.yml" /> 
+  
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</head>
+<body>
+  <div id="nc-root"></div>
+  
+  <script>
+    // This function will only execute once the document is fully loaded
+    window.addEventListener('load', function() {
+      if (window.CMS) {
+        // This is the manual call to initialize the CMS
+        window.CMS.init();
+      } else {
+        console.error("Decap CMS library not found.");
+      }
+    });
+  </script>
+</body>
+</html>
