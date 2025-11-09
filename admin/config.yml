@@ -16,15 +16,12 @@ public_folder: "/assets/uploads"
 
 # This is the "collection," or the data file we want to edit.
 collections:
-  - name: "bookmarks" # The name for the collection in the UI
-    label: "Bookmarks" # The label for the collection in the UI
-    label_singular: "Bookmark" # The label for a single item
-    folder: "/" # This tells Decap to look in the root folder
-    # This setting tells Decap that all bookmarks live in ONE file
+  - name: "bookmarks" 
+    label: "Bookmarks"
+    label_singular: "Bookmark"
+    folder: "/"
     file: "bookmarks.json"
-    # This is how the file is structured
     format: "json"
-    # This is the list of fields for each bookmark
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "URL", name: "url", widget: "string" }

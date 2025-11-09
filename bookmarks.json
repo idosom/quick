@@ -5,33 +5,5 @@
     "description": "The world's most popular search engine.",
     "tags": ["search", "tools", "web"],
     "pinned": false
-  },
-  {
-    "title": "Hacker News",
-    "url": "https://news.ycombinator.com",
-    "description": "Tech and startup news aggregator.",
-    "tags": ["tech", "news", "code"],
-    "pinned": false
-  },
-  {
-    "title": "MDN Web Docs",
-    "url": "https://developer.mozilla.org/",
-    "description": "The go-to resource for web developers.",
-    "tags": ["dev", "docs", "javascript", "css"],
-    "pinned": false
-  },
-  {
-    "title": "Smashing Magazine",
-    "url": "https://www.smashingmagazine.com/",
-    "description": "For web designers and developers.",
-    "tags": ["design", "css", "dev", "articles"],
-    "pinned": false
-  },
-  {
-    "title": "CSS-Tricks",
-    "url": "https://css-tricks.com/",
-    "description": "All about CSS, HTML, and JavaScript.",
-    "tags": ["css", "frontend", "dev"],
-    "pinned": false
   }
 ]
