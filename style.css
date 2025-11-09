@@ -1,0 +1,238 @@
+/* Basic Reset & Body */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header & Search Bar */
+header {
+    background-color: #fff;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+header h1 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+#search-bar {
+    width: 100%;
+    max-width: 600px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 1rem;
+}
+#search-bar:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Header Action Buttons */
+.header-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #3498db;
+    color: white;
+}
+.btn:hover {
+    background-color: #2980b9;
+}
+.btn-secondary {
+    background-color: #95a5a6;
+}
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+.btn-danger {
+    background-color: #e74c3c;
+}
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+
+/* Bookmarks Grid Container */
+#bookmarks-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Section dividers for Pinned/All */
+.bookmarks-section {
+    position: relative;
+    margin-top: 2rem;
+    padding-top: 1rem;
+}
+.bookmarks-section:first-child {
+    margin-top: 0;
+}
+.bookmarks-section-title {
+    font-size: 1.5rem;
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 0.5rem;
+}
+.bookmarks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+
+/* Individual Bookmark Card */
+.bookmark-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    position: relative; /* For pin button */
+}
+.bookmark-card.user-added {
+    border-left: 4px solid #3498db;
+}
+
+/* Pin Button */
+.pin-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: all 0.2s ease;
+    padding: 5px;
+    line-height: 1;
+}
+.bookmark-card:hover .pin-btn,
+.bookmark-card.pinned .pin-btn {
+    opacity: 1;
+}
+.bookmark-card.pinned .pin-btn {
+    transform: scale(1.1);
+    color: #e67e22; /* Pinned color */
+}
+
+
+/* Card Content */
+.bookmark-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+.bookmark-content h2 {
+    margin-bottom: 0.5rem;
+    padding-right: 2.5rem; /* Space for pin button */
+}
+.bookmark-content h2 a {
+    text-decoration: none;
+    color: #2980b9;
+    font-size: 1.25rem;
+}
+.bookmark-content h2 a:hover {
+    text-decoration: underline;
+}
+.bookmark-content p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Card Tags */
+.bookmark-tags {
+    padding: 0 1.5rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.tag {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+
+/* Add Bookmark Modal */
+.hidden {
+    display: none !important;
+}
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#add-modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+}
+#add-modal h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Modal Form */
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    color: #555;
+}
+.form-group input {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
