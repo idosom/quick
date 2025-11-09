@@ -1,10 +1,20 @@
 # The backend tells Decap CMS where your code is stored.
+# The backend tells Decap CMS where your code is stored.
 backend:
   name: github
+  # Use the standard GitHub API URL
+  base_url: https://api.github.com
+  # Use the standard GitHub OAuth endpoint
+  auth_endpoint: login/oauth/authorize
+  # Tells the CMS to use the implicit flow—required for static hosting
+  auth_type: implicit 
+  # Your specific repository
   repo: idosom/quick
+  # Your specific branch
   branch: main
-  base_url: https://github.com 
+  # This line specifies the access scope
   auth_scope: repo
+  # Your Client ID is essential
   client_id: Ov23li7CouZziaW3n7qR
 
 # This tells the CMS where to store images, if you add them.
