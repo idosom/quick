@@ -1,19 +1,14 @@
 # The backend tells Decap CMS where your code is stored.
 # The backend tells Decap CMS where your code is stored.
 # The backend tells Decap CMS where your code is stored.
+# Use this backend in your admin/config.yml
 backend:
   name: github
-  # CRITICAL: Use the main GitHub URL for OAuth authorization
   base_url: https://github.com 
-  # Set the authentication type to implicit
   auth_type: implicit
-  # Your specific repository
   repo: idosom/quick
-  # Your specific branch
   branch: main
-  # This line specifies the access scope
   auth_scope: repo
-  # Your Client ID is essential
   client_id: Ov23li7CouZziaW3n7qR
 
 # ... (rest of the file remains the same)

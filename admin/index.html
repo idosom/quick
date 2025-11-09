@@ -5,26 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bookmark Library - Content Manager</title>
   
-  <meta name="cms-config-path" content="/quick/admin/config.yml" /> 
-  
-  <script>
-    window.CMS_MANUAL_INIT = true;
-  </script>
+  <meta name="cms-config-path" content="./config.yml" /> 
 </head>
 <body>
   
   <div id="nc-root"></div>
   
-  <script src="https://unpkg.com/decap-cms@2.10.19/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 
-  <script>
-    window.onload = function() {
-        if (window.CMS) {
-            window.CMS.init();
-        } else {
-            console.error("Decap CMS library not found.");
-        }
-    };
-  </script>
 </body>
 </html>
