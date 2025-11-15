@@ -12,21 +12,129 @@
     "tags": ["tech", "news", "code"]
   },
   {
-    "title": "MDN Web Docs",
-    "url": "https://developer.mozilla.org/",
-    "description": "The go-to resource for web developers.",
-    "tags": ["dev", "docs", "javascript", "css"]
+    "title": "Overleaf",
+    "url": "https://www.overleaf.com/project",
+    "description": "An online LaTeX editor that's easy to use.",
+    "tags": ["tools", "docs", "paper", "pdf"]
   },
   {
-    "title": "Smashing Magazine",
-    "url": "https://www.smashingmagazine.com/",
-    "description": "For web designers and developers.",
-    "tags": ["design", "css", "dev", "articles"]
+    "title": "Babylon Bee",
+    "url": "https://babylonbee.com/",
+    "description": "Fake news you can trust.",
+    "tags": ["right", "news", "satire", "comedy"]
   },
   {
-    "title": "CSS-Tricks",
-    "url": "https://css-tricks.com/",
-    "description": "All about CSS, HTML, and JavaScript.",
-    "tags": ["css", "frontend", "dev"]
+    "title": "Last.fm",
+    "url": "https://www.last.fm/user/Idosom",
+    "description": "Music Counts. Track, Find and Rediscover music.",
+    "tags": ["music", "data", "scrobble"]
+  },
+  {
+    "title": "Google Translate",
+    "url": "https://translate.google.com/",
+    "description": "Free online translation tool supporting hundreds of languages.",
+    "tags": ["tools", "translation", "language", "google"]
+  },
+  {
+    "title": "Google Sheets",
+    "url": "https://docs.google.com/spreadsheets/u/0/",
+    "description": "Create and edit spreadsheets online with Google Sheets.",
+    "tags": ["google", "sheets", "spreadsheet", "collaboration", "productivity"]
+  },
+  {
+    "title": "Sites",
+    "url": "https://sites.google.com/new",
+    "description": "Create and publish your own website with Google Sites.",
+    "tags": ["google", "website", "web", "builder"]
+  },
+  {
+    "title": "Slides",
+    "url": "https://www.google.com/slides/about/",
+    "description": "Create beautiful presentations with Google Slides.",
+    "tags": ["google", "presentation", "slides", "productivity"]
+  },
+  {
+    "title": "Forms",
+    "url": "https://www.google.com/forms/about/",
+    "description": "Create surveys and forms with Google Forms.",
+    "tags": ["google", "forms", "survey", "data collection"]
+  },
+  {
+    "title": "Docs",
+    "url": "https://www.google.com/docs/about/",
+    "description": "Write and collaborate on documents with Google Docs.",
+    "tags": ["google", "docs", "document", "writing", "productivity"]
+  },
+  {
+    "title": "Lichess | Home",
+    "url": "https://lichess.org/",
+    "description": "Free online chess platform with community features.",
+    "tags": ["chess", "games", "online", "community"]
+  },
+  {
+    "title": "Lichess | Puzzles",
+    "url": "https://lichess.org/training",
+    "description": "Chess puzzle training to improve your game.",
+    "tags": ["chess", "training", "puzzles", "learning"]
+  },
+  {
+    "title": "Garmin Connect Profile",
+    "url": "https://connect.garmin.com/modern/profile/9419a178-3342-42a9-a8bc-0d6a8cd3118d",
+    "description": "Personal profile page on Garmin Connect.",
+    "tags": ["garmin", "fitness", "profile", "sports"]
+  },
+  {
+    "title": "Amazon DE",
+    "url": "https://www.amazon.de/gp/switch-language/homepage.html?ie=UTF8&language=en_GB&tag=googdeaen-21&hvadid=195191052927&hvpos=1t1&hvnetw=g&hvrand=6137464571291590962&hvpone=&hvptwo=&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9067742&hvtargid=kwd-10573980&ref=pd_sl_7qhce481as_e",
+    "description": "Amazon Germany - German online shopping.",
+    "tags": ["shopping", "amazon", "germany", "ecommerce"]
+  },
+  {
+    "title": "Amazon FR",
+    "url": "https://www.amazon.fr/",
+    "description": "Amazon France - French online shopping.",
+    "tags": ["shopping", "amazon", "france", "ecommerce"]
+  },
+  {
+    "title": "Reddit",
+    "url": "https://www.reddit.com/",
+    "description": "Front page of the internet - social news aggregation and discussion.",
+    "tags": ["social", "news", "community", "discussion"]
+  },
+  {
+    "title": "WallStreetBets",
+    "url": "https://www.reddit.com/search/?q=WallStreetBets&source=trending",
+    "description": "Reddit community focused on stock market discussion and trading.",
+    "tags": ["reddit", "stocks", "trading", "finance", "investing"]
+  },
+  {
+    "title": "here",
+    "url": "http://192.168.4.1/L",
+    "description": "Local network device interface.",
+    "tags": ["network", "local", "router"]
+  },
+  {
+    "title": "graph",
+    "url": "https://www.last.fm/labs/artist-velocity",
+    "description": "Last.fm analytics tool",
+    "tags": ["music", "last.fm", "analytics", "stats", "visualization"]
+  },
+  {
+    "title": "music",
+    "url": "https://open.spotify.com/",
+    "description": "Spotify music streaming platform.",
+    "tags": ["music", "spotify", "streaming", "audio"]
+  },
+  {
+    "title": "Ido's profile • Letterboxd",
+    "url": "https://letterboxd.com/idosom/",
+    "description": "Movie and film tracking profile on Letterboxd.",
+    "tags": ["movies", "films", "letterboxd", "profile", "entertainment"]
+  },
+  {
+    "title": "IMDb",
+    "url": "https://www.imdb.com/user/ur175291203/?ref_=nv_usr_prof_2",
+    "description": "Internet Movie Database profile page.",
+    "tags": ["movies", "imdb", "films", "entertainment", "profile"]
   }
 ]
