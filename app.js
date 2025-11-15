@@ -1,101 +1,71 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // DOM Elements
     const bookmarksContainer = document.getElementById("bookmarks-container");
     const searchBar = document.getElementById("search-bar");
-    
-    // App State
-    let allBookmarks = [];
-    let currentQuery = "";
+    let allBookmarks = []; // To store the original list of bookmarks
 
-    // --- Core App Logic ---
-
-    // 1. Initialize the app
-    function initializeApp() {
-        // Fetch master list from our JSON file
-        fetch("bookmarks.json")
-            .then(response => response.json())
-            .then(masterBookmarks => {
-                // Ensure we start with an array, even if the file is empty
-                allBookmarks = Array.isArray(masterBookmarks) ? masterBookmarks : [];
-                renderApp();
-            })
-            .catch(error => {
-                console.error("Error fetching bookmarks:", error);
-                bookmarksContainer.innerHTML = "<p>Failed to load bookmarks. Check console for details.</p>";
-            });
-
-        // Setup Event Listeners
-        setupEventListeners();
-    }
-
-    // 2. Setup all event listeners
-    function setupEventListeners() {
-        // Search
-        searchBar.addEventListener("input", (e) => {
-            currentQuery = e.target.value.toLowerCase();
-            renderApp();
+    // 1. Fetch the bookmarks data
+    fetch("bookmarks.json")
+        .then(response => response.json())
+        .then(data => {
+            allBookmarks = data; // Store the full list
+            renderBookmarks(allBookmarks); // Render the initial full list
+        })
+        .catch(error => {
+            console.error("Error fetching bookmarks:", error);
+            bookmarksContainer.innerHTML = "<p>Failed to load bookmarks.</p>";
         });
-        
-        // Removed: Click handler for pinning
-    }
 
-    // 3. Render the entire application (filter and display)
-    function renderApp() {
-        // Filter based on search query (only checks title and description now)
+    // 2. Add search/filter functionality
+    searchBar.addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase();
+
         const filteredBookmarks = allBookmarks.filter(bookmark => {
-            const query = currentQuery;
             const titleMatch = bookmark.title.toLowerCase().includes(query);
-            const descriptionMatch = (bookmark.description || "").toLowerCase().includes(query);
-            return titleMatch || descriptionMatch;
+            const descriptionMatch = bookmark.description.toLowerCase().includes(query);
+            const tagMatch = bookmark.tags.some(tag => tag.toLowerCase().includes(query));
+            
+            return titleMatch || descriptionMatch || tagMatch;
         });
 
         renderBookmarks(filteredBookmarks);
-    }
+    });
 
-    // 4. Function to create and display HTML for bookmarks
-    function renderBookmarks(items) {
-        bookmarksContainer.innerHTML = ""; // Clear container
+    // 3. Function to render the bookmarks to the page
+    function renderBookmarks(bookmarks) {
+        // Clear the container first
+        bookmarksContainer.innerHTML = "";
 
-        if (items.length === 0) {
-            bookmarksContainer.innerHTML = "<p>No quick links found matching your search.</p>";
+        if (bookmarks.length === 0) {
+            bookmarksContainer.innerHTML = "<p>No bookmarks found.</p>";
             return;
         }
-        
-        // Render All Section
-        const sectionEl = document.createElement("section");
-        sectionEl.className = "bookmarks-section";
-        
-        const gridEl = document.createElement("div");
-        gridEl.className = "bookmarks-grid";
-        
-        items.forEach(bookmark => {
-            gridEl.appendChild(createBookmarkCard(bookmark));
+
+        // Create and append a card for each bookmark
+        bookmarks.forEach(bookmark => {
+            const card = document.createElement("article");
+            card.className = "bookmark-card";
+
+            // Create tag elements
+            const tagsHTML = bookmark.tags
+                .map(tag => `<span class="tag">${tag}</span>`)
+                .join("");
+
+            // Set the inner HTML of the card
+            card.innerHTML = `
+                <div class="bookmark-content">
+                    <h2>
+                        <a href="${bookmark.url}" target="_blank" rel="noopener noreferrer">
+                            ${bookmark.title}
+                        </a>
+                    </h2>
+                    <p>${bookmark.description}</p>
+                </div>
+                <div class="bookmark-tags">
+                    ${tagsHTML}
+                </div>
+            `;
+
+            bookmarksContainer.appendChild(card);
         });
-        
-        sectionEl.appendChild(gridEl);
-        bookmarksContainer.appendChild(sectionEl);
     }
-
-    // 5. Helper to create a single bookmark card
-    function createBookmarkCard(bookmark) {
-        const card = document.createElement("article");
-        card.className = "bookmark-card";
-
-        // Removed: Pin button and tags section
-        
-        card.innerHTML = `
-            <div class="bookmark-content">
-                <h2>
-                    <a href="${bookmark.url}" target="_blank" rel="noopener noreferrer">
-                        ${bookmark.title}
-                    </a>
-                </h2>
-                <p>${bookmark.description || ""}</p>
-            </div>
-        `;
-        return card;
-    }
-    
-    // --- Start the App ---
-    initializeApp();
 });
